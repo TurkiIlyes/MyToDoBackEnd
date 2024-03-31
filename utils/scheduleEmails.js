@@ -26,8 +26,8 @@ const handleSendEmail = async (task) => {
   });
 };
 const scheduleEmails = async () => {
-  const date = moment().tz("Africa/Tunis");
-
+  // const date = moment().tz("Africa/Tunis");
+  const date = new Date();
   date.set("seconds", 0);
 
   const tasks = await Task.find({
