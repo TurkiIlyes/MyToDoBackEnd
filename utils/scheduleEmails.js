@@ -26,10 +26,10 @@ const handleSendEmail = async (task) => {
   });
 };
 const scheduleEmails = async () => {
-  // const date = moment().tz("Africa/Tunis");
-  const date = new Date();
+  const date = moment().tz("Africa/Tunis");
+  // const date = new Date();
   date.set("seconds", 0);
-
+  date.utcOffset(0, true);
   const tasks = await Task.find({
     startDate: date.format(),
     status: "To Do",
