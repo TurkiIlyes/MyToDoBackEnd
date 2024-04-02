@@ -29,16 +29,21 @@ exports.deleteTaskValidator = [
 ];
 
 exports.updateTaskValidator = [
-  check("title").isLength({ max: 30 }).withMessage("too long title"),
-  check("status").custom(async (status) => {
-    if (!["To Do", "In Progress", "Done"].includes(status)) {
-      throw new Error("invalid status -_-");
-    }
-    return true;
-  }),
-  check("details").isLength({ max: 256 }).withMessage("too long details"),
-  check("startDate"),
-  check("checkSendEmail"),
+  check("title").optional().isLength({ max: 30 }).withMessage("too long title"),
+  check("status")
+    .optional()
+    .custom(async (status) => {
+      if (!["To Do", "In Progress", "Done"].includes(status)) {
+        throw new Error("invalid status -_-");
+      }
+      return true;
+    }),
+  check("details")
+    .optional()
+    .isLength({ max: 256 })
+    .withMessage("too long details"),
+  check("startDate").optional(),
+  check("checkSendEmail").optional(),
   validatorMiddleware,
 ];
 
