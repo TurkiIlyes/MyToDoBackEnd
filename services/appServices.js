@@ -1,5 +1,6 @@
 const asyncHandler = require("express-async-handler");
 const User = require("../models/userModel");
+const sendEmail = require("../utils/sendEmail");
 
 exports.sendAppEmail = asyncHandler(async (req, res) => {
   const { message } = req.body;
@@ -26,12 +27,14 @@ exports.sendAppEmail = asyncHandler(async (req, res) => {
     });
   });
   res.status(200).json("Email sent successfully");
+  console.log("APP:SEND-EMAIL");
 });
 
 exports.getAllUsers = asyncHandler(async (req, res) => {
   console.log("APP:GET-USERS");
   const users = await User.find();
   res.status(200).json(users);
+  console.log("APP:GET-USERS");
 });
 
 exports.getStatus = asyncHandler(async (req, res) => {
@@ -53,4 +56,5 @@ exports.getStatus = asyncHandler(async (req, res) => {
     todayUsers: todayUsers.length,
     thisWeekUsers: thisWeekUsers.length,
   });
+  console.log("APP:GET-STATUS");
 });
