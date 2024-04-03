@@ -40,13 +40,17 @@ exports.getStatus = asyncHandler(async (req, res) => {
   const todayUsers = await User.find({
     createdAt: { $gte: new Date(new Date() - 24 * 60 * 60 * 1000) },
   });
-  const weekUsers = await User.find({
+  const thisWeekUsers = await User.find({
     createdAt: { $gte: new Date(new Date() - 7 * 24 * 60 * 60 * 1000) },
   });
-
+  console.log({
+    totalUsers: totalUsers.length,
+    todayUsers: todayUsers.length,
+    thisWeekUsers: thisWeekUsers.length,
+  });
   res.status(200).json({
     totalUsers: totalUsers.length,
     todayUsers: todayUsers.length,
-    weekUsers: weekUsers.length,
+    thisWeekUsers: thisWeekUsers.length,
   });
 });
