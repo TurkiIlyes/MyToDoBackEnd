@@ -3,7 +3,7 @@ const User = require("../models/userModel");
 
 exports.sendEmail = asyncHandler(async (req, res) => {
   const { message } = req.body;
-
+  console.log("APP:SEND-EMAIL");
   const users = await User.find();
 
   users.forEach(async (user) => {
@@ -28,11 +28,13 @@ exports.sendEmail = asyncHandler(async (req, res) => {
 });
 
 exports.getAllUsers = asyncHandler(async (req, res) => {
+  console.log("APP:GET-USERS");
   const users = await User.find();
   res.status(200).json(users);
 });
 
 exports.getStatus = asyncHandler(async (req, res) => {
+  console.log("APP:GET-STATUS");
   const totalUsers = await User.find();
   const todayUsers = await User.find({
     createdAt: { $gte: new Date(new Date() - 24 * 60 * 60 * 1000) },
