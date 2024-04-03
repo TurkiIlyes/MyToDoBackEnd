@@ -4,6 +4,7 @@ const User = require("../models/userModel");
 exports.sendAppEmail = asyncHandler(async (req, res) => {
   const { message } = req.body;
   console.log("APP:SEND-EMAIL");
+  console.log(message);
   const users = await User.find();
 
   users.forEach(async (user) => {
