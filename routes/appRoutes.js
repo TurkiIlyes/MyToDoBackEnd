@@ -1,13 +1,13 @@
-const router = require("express").Router();
+// const router = require("express").Router();
 
-const {
-  getStatus,
-  getAllUsers,
-  sendEmail,
-} = require("../services/appServices");
+// const {
+//   getStatus,
+//   getAllUsers,
+//   sendEmail,
+// } = require("../services/appServices");
 
-router.post("/send-email", sendEmail);
+// router.post("/send-email", sendEmail);
 
-router.get("/users", getAllUsers);
+// router.get("/users", getAllUsers);
 
-router.get("/status", getStatus);
+// router.get("/status", getStatus);

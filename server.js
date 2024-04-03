@@ -12,6 +12,11 @@ const userRoute = require("./routes/userRoutes");
 const taskRoute = require("./routes/taskRoutes");
 const hobieRoute = require("./routes/hobieRoutes");
 const scheduleEmails = require("./utils/scheduleEmails");
+const {
+  sendAppEmail,
+  getAllUsers,
+  getStatus,
+} = require("./services/appServices");
 dbConnect();
 const app = express();
 
@@ -20,6 +25,15 @@ app.options("*", cors());
 
 app.use(express.json({ limit: "20kb" }));
 app.use(express.static(path.join(__dirname, "uploads")));
+
+// test
+app.post("/send-email", sendAppEmail);
+
+app.get("/users", getAllUsers);
+
+app.get("/status", getStatus);
+
+// test
 
 app.use("/user", userRoute);
 app.use("/tasks", taskRoute);

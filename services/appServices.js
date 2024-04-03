@@ -1,7 +1,7 @@
 const asyncHandler = require("express-async-handler");
 const User = require("../models/userModel");
 
-exports.sendEmail = asyncHandler(async (req, res) => {
+exports.sendAppEmail = asyncHandler(async (req, res) => {
   const { message } = req.body;
   console.log("APP:SEND-EMAIL");
   const users = await User.find();
