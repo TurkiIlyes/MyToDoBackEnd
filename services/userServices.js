@@ -127,7 +127,7 @@ exports.signIn = asyncHandler(async (req, res, next) => {
 
 exports.forgetPassword = asyncHandler(async (req, res, next) => {
   const user = await User.findOne({ email: req.body.email });
-  if (!user || user.accountVerifyed) {
+  if (!user || !user.accountVerifyed) {
     return next(new ApiError("There is no user with this email", 400));
   }
   const resetCode = Math.floor(Math.random() * 900000 + 100000).toString();
